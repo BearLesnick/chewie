@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:chewie/src/chewie_progress_colors.dart';
+import 'package:chewie/src/dependency_wrapper.dart';
 import 'package:chewie/src/player_with_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,15 +23,27 @@ class Chewie extends StatefulWidget {
   Chewie({
     Key key,
     this.controller,
+    this.dependencies,
   })  : assert(controller != null, 'You must provide a chewie controller'),
         super(key: key);
 
   /// The [ChewieController]
   final ChewieController controller;
 
+  /// widget to provide dependencies controls widget
+  final DependenciesWrapper dependencies;
+
   @override
   ChewieState createState() {
     return ChewieState();
+  }
+
+  Widget wrapWithDependencies(Widget widgetToWrap) {
+    if (dependencies == null) {
+      dependencies.child = widgetToWrap;
+      return dependencies;
+    }
+    return widgetToWrap;
   }
 }
 
@@ -84,7 +97,7 @@ class ChewieState extends State<Chewie> {
       body: Container(
         alignment: Alignment.center,
         color: Colors.black,
-        child: controllerProvider,
+        child: widget.wrapWithDependencies(controllerProvider),
       ),
     );
   }

@@ -65,11 +65,8 @@ class _CupertinoControlsState extends State<CupertinoControls> {
     final barHeight = orientation == Orientation.portrait ? 30.0 : 47.0;
     final buttonPadding = orientation == Orientation.portrait ? 16.0 : 24.0;
 
-    return MouseRegion(
-      onHover: (_) {
-        _cancelAndRestartTimer();
-      },
-      child: GestureDetector(
+    return
+       GestureDetector(
         onTap: () {
           _cancelAndRestartTimer();
         },
@@ -83,7 +80,6 @@ class _CupertinoControlsState extends State<CupertinoControls> {
             ],
           ),
         ),
-      ),
     );
   }
 
