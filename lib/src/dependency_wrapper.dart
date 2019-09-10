@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
+// ignore: must_be_immutable
 abstract class DependenciesWrapper extends InheritedWidget {
   Widget child;
+
+  DependenciesWrapper({this.child}) : super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
