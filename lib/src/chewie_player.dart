@@ -82,10 +82,10 @@ class ChewieState extends State<Chewie> {
 
   @override
   Widget build(BuildContext context) {
-    return _ChewieControllerProvider(
+    return widget.wrapWithDependencies(_ChewieControllerProvider(
       controller: widget.controller,
       child: PlayerWithControls(),
-    );
+    ));
   }
 
   Widget _buildFullScreenVideo(
