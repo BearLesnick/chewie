@@ -244,8 +244,9 @@ class ChewieController extends ChangeNotifier {
   /// The Aspect Ratio of the Video. Important to get the correct size of the
   /// video!
   ///
-  /// Will fallback to fitting within the space allowed.
-  final double aspectRatio;
+  /// Will fallback to fitting within the space allowed. should be mutable
+  /// to be able to change controller with changing media query.
+  double aspectRatio;
 
   /// The colors to use for controls on iOS. By default, the iOS player uses
   /// colors sampled from the original iOS 11 designs.
