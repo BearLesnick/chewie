@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class DependenciesWrapper<T> extends InheritedWidget {
+class DependenciesWrapper<T> extends InheritedWidget {
   final Widget child;
   final T dependence;
 

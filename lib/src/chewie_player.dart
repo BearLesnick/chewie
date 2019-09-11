@@ -19,7 +19,7 @@ typedef Widget ChewieRoutePageBuilder(
 ///
 /// `video_player` is pretty low level. Chewie wraps it in a friendly skin to
 /// make it easy to use!
-class Chewie extends StatefulWidget {
+class Chewie<T> extends StatefulWidget {
   Chewie({
     Key key,
     this.controller,
@@ -31,7 +31,7 @@ class Chewie extends StatefulWidget {
   final ChewieController controller;
 
   /// widget to provide dependencies controls widget
-  final DependenciesWrapper dependencies;
+  final T dependencies;
 
   @override
   ChewieState createState() {
@@ -40,8 +40,7 @@ class Chewie extends StatefulWidget {
 
   Widget wrapWithDependencies(Widget widgetToWrap) {
     if (dependencies != null) {
-      dependencies.child = widgetToWrap;
-      return dependencies;
+      DependenciesWrapper<T>(child: widgetToWrap,dependence: dependencies);
     }
     return widgetToWrap;
   }
