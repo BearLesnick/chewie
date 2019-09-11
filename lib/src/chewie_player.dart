@@ -40,7 +40,8 @@ class Chewie<T> extends StatefulWidget {
 
   Widget wrapWithDependencies(Widget widgetToWrap) {
     if (dependencies != null) {
-      return  DependenciesWrapper<T>(child: widgetToWrap,dependence: dependencies);
+      return DependenciesWrapper<T>(
+          child: widgetToWrap, dependence: dependencies);
     }
     return widgetToWrap;
   }
@@ -139,7 +140,7 @@ class ChewieState extends State<Chewie> {
       pageBuilder: _fullScreenRoutePageBuilder,
     );
 
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    await SystemChrome.setEnabledSystemUIOverlays([]);
     if (isAndroid) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
