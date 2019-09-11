@@ -10,7 +10,7 @@ class DependenciesWrapper<T> extends InheritedWidget {
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
     if (oldWidget is DependenciesWrapper) {
-      return oldWidget.dependence == this.dependence;
+      return oldWidget.child == this.child;
     }
     return false;
   }
