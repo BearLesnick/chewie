@@ -98,7 +98,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
           children: <Widget>[
             Expanded(
               child: Center(
-                child: Chewie<void>(
+                child: Chewie(
                   controller: _chewieController,
                 ),
               ),
