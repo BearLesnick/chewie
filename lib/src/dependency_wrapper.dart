@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-abstract class DependenciesWrapper extends InheritedWidget {
-  Widget child;
+abstract class DependenciesWrapper<T> extends InheritedWidget {
+  final Widget child;
+  final T dependence;
 
-  DependenciesWrapper({this.child}) : super(child: child);
+  DependenciesWrapper({this.child, this.dependence}) : super(child: child);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
@@ -14,7 +14,8 @@ abstract class DependenciesWrapper extends InheritedWidget {
     return null;
   }
 
-  static T of<T extends DependenciesWrapper>(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(T) as T;
+  static DependenciesWrapper of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(DependenciesWrapper)
+        as DependenciesWrapper;
   }
 }
