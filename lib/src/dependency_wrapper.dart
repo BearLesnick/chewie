@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class DependenciesWrapper<T> extends InheritedWidget {
   final Widget child;
@@ -9,13 +10,13 @@ class DependenciesWrapper<T> extends InheritedWidget {
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
     if (oldWidget is DependenciesWrapper) {
-      oldWidget.child == this.child;
+      return oldWidget.child == this.child;
     }
-    return null;
+    return false;
   }
 
   static DependenciesWrapper of(BuildContext context) {
     return context.inheritFromWidgetOfExactType(DependenciesWrapper)
-        as DependenciesWrapper;
+    as DependenciesWrapper;
   }
 }
