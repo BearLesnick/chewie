@@ -74,7 +74,7 @@ class ChewieState extends State<Chewie> {
     if (widget.controller.isFullScreen && !_isFullScreen) {
       _isFullScreen = true;
       await _pushFullScreenWidget(context);
-    } else if (_isFullScreen) {
+    } else if (!widget.controller.isFullScreen && _isFullScreen) {
       Navigator.of(context).pop();
       _isFullScreen = false;
     }
@@ -247,6 +247,12 @@ class ChewieController extends ChangeNotifier {
   /// Will fallback to fitting within the space allowed. should be mutable
   /// to be able to change controller with changing media query.
   double aspectRatio;
+
+  void set setAspectRatioWithListenersNotify(double aspectRatio)
+  {
+    this.aspectRatio = aspectRatio;
+    notifyListeners();
+  }
 
   /// The colors to use for controls on iOS. By default, the iOS player uses
   /// colors sampled from the original iOS 11 designs.
