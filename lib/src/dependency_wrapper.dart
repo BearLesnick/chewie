@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-class DependenciesWrapper extends InheritedWidget {
-  DependenciesWrapper({@required this.child, this.dependence})
-      : super(child: child);
+class DependenciesWrapper<T> extends InheritedWidget {
   final Widget child;
-  final dynamic dependence;
+  final T dependence;
+
+  DependenciesWrapper({this.child, this.dependence}) : super(child: child);
+
+  static Type _typeOf<T>() => T;
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
@@ -14,8 +16,9 @@ class DependenciesWrapper extends InheritedWidget {
     return false;
   }
 
-  static DependenciesWrapper of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(DependenciesWrapper)
-        as DependenciesWrapper;
+  static DependenciesWrapper<T> of<T>(BuildContext context) {
+    Type type = _typeOf<DependenciesWrapper<T>>();
+    return context.inheritFromWidgetOfExactType(type)
+    as DependenciesWrapper<T>;
   }
 }
