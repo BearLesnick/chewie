@@ -40,7 +40,7 @@ class Chewie<T> extends StatefulWidget {
 
   Widget wrapWithDependencies(Widget widgetToWrap) {
     if (dependencies != null) {
-      DependenciesWrapper<T>(child: widgetToWrap,dependence: dependencies);
+      return  DependenciesWrapper<T>(child: widgetToWrap,dependence: dependencies);
     }
     return widgetToWrap;
   }
