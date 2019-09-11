@@ -15,8 +15,8 @@ class DependenciesWrapper<T> extends InheritedWidget {
     return false;
   }
 
-  static DependenciesWrapper of(BuildContext context) {
+  static DependenciesWrapper<T> of<T>(BuildContext context) {
     return context.inheritFromWidgetOfExactType(DependenciesWrapper)
-    as DependenciesWrapper;
+    as DependenciesWrapper<T>;
   }
 }
