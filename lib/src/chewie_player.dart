@@ -82,10 +82,12 @@ class ChewieState extends State<Chewie> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.wrapWithDependencies(_ChewieControllerProvider(
-      controller: widget.controller,
-      child: PlayerWithControls(),
-    ));
+    return SafeArea(
+      child: widget.wrapWithDependencies(_ChewieControllerProvider(
+        controller: widget.controller,
+        child: PlayerWithControls(),
+      )),
+    );
   }
 
   Widget _buildFullScreenVideo(
@@ -248,8 +250,7 @@ class ChewieController extends ChangeNotifier {
   /// to be able to change controller with changing media query.
   double aspectRatio;
 
-  void set setAspectRatioWithListenersNotify(double aspectRatio)
-  {
+  void set setAspectRatioWithListenersNotify(double aspectRatio) {
     this.aspectRatio = aspectRatio;
     notifyListeners();
   }
