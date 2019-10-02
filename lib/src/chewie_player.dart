@@ -163,9 +163,9 @@ class ChewieState extends State<Chewie> {
       Screen.keepOn(false);
     }
 
-    SystemChrome.setEnabledSystemUIOverlays(
+  await  SystemChrome.setEnabledSystemUIOverlays(
         widget.controller.systemOverlaysAfterFullScreen);
-    SystemChrome.setPreferredOrientations(
+  await  SystemChrome.setPreferredOrientations(
         widget.controller.deviceOrientationsAfterFullScreen);
   }
 }
