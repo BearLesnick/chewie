@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:chewie/src/chewie_player.dart';
@@ -38,7 +39,14 @@ class PlayerWithControls extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: chewieController.aspectRatio ??
                     _calculateAspectRatio(context),
-                child: VideoPlayer(chewieController.videoPlayerController),
+                child: Padding(
+                  child: VideoPlayer(chewieController.videoPlayerController),
+                  padding: EdgeInsets.only(
+                    top: Platform.isAndroid ? 1 : 0,
+                    left: Platform.isAndroid ? 2 : 0,
+                    right: Platform.isAndroid ? 2 : 0,
+                  ),
+                ),
               ),
             ),
           ),
