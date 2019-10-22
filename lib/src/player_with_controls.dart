@@ -42,9 +42,9 @@ class PlayerWithControls extends StatelessWidget {
                 child: Padding(
                   child: VideoPlayer(chewieController.videoPlayerController),
                   padding: EdgeInsets.only(
-                    top: Platform.isAndroid ? 1 : 0,
-                    left: Platform.isAndroid ? 2 : 0,
-                    right: Platform.isAndroid ? 2 : 0,
+                    top: Platform.isAndroid ? 2 : 0,
+                    left: Platform.isAndroid ? 5 : 0,
+                    right: Platform.isAndroid ? 5 : 0,
                   ),
                 ),
               ),

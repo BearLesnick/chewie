@@ -35,6 +35,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
     _videoPlayerController2 = VideoPlayerController.network(
         'https://www.sample-videos.com/video123/mp4/480/asdasdas.mp4');
     _chewieController = ChewieController(
+      customControls: Container(color: Colors.black45.withOpacity(0.5),),
       videoPlayerController: _videoPlayerController1,
       aspectRatio: 3 / 2,
       autoPlay: true,
@@ -77,7 +78,8 @@ class _ChewieDemoState extends State<ChewieDemo> {
         body: Column(
           children: <Widget>[
             Expanded(
-              child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Chewie<void>(
                   controller: _chewieController,
                 ),
