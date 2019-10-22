@@ -16,19 +16,16 @@ class PlayerWithControls extends StatelessWidget {
     final ChewieController chewieController = ChewieController.of(context);
 
     return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        child: AspectRatio(
-          aspectRatio:
-              chewieController.aspectRatio ?? _calculateAspectRatio(context),
-          child: _buildPlayerWithControls(chewieController, context),
-        ),
+      child: AspectRatio(
+        aspectRatio:
+        chewieController.aspectRatio ?? _calculateAspectRatio(context),
+        child: _buildPlayerWithControls(chewieController, context),
       ),
     );
   }
 
-  Container _buildPlayerWithControls(
-      ChewieController chewieController, BuildContext context) {
+  Container _buildPlayerWithControls(ChewieController chewieController,
+      BuildContext context) {
     return Container(
       child: Stack(
         children: <Widget>[
@@ -36,16 +33,18 @@ class PlayerWithControls extends StatelessWidget {
           Center(
             child: Hero(
               tag: chewieController.videoPlayerController,
-              child: AspectRatio(
-                aspectRatio: chewieController.aspectRatio ??
-                    _calculateAspectRatio(context),
-                child: Padding(
-                  child: VideoPlayer(chewieController.videoPlayerController),
-                  padding: EdgeInsets.only(
-                    top: Platform.isAndroid ? 2 : 0,
-                    left: Platform.isAndroid ? 5 : 0,
-                    right: Platform.isAndroid ? 5 : 0,
-                  ),
+              child: Padding(
+                child: VideoPlayer(chewieController.videoPlayerController),
+                padding: EdgeInsets.only(
+                  top: Platform.isAndroid && MediaQuery
+                      .of(context)
+                      .orientation != Orientation.landscape ? 1 : 0,
+                  left: Platform.isAndroid && MediaQuery
+                      .of(context)
+                      .orientation != Orientation.landscape ? 2 : 0,
+                  right: Platform.isAndroid && MediaQuery
+                      .of(context)
+                      .orientation != Orientation.landscape ? 2 : 0,
                 ),
               ),
             ),
@@ -57,24 +56,26 @@ class PlayerWithControls extends StatelessWidget {
     );
   }
 
-  Widget _buildControls(
-    BuildContext context,
-    ChewieController chewieController,
-  ) {
+  Widget _buildControls(BuildContext context,
+      ChewieController chewieController,) {
     return chewieController.showControls
         ? chewieController.customControls != null
-            ? chewieController.customControls
-            : Theme.of(context).platform == TargetPlatform.android
-                ? MaterialControls()
-                : CupertinoControls(
-                    backgroundColor: Color.fromRGBO(41, 41, 41, 0.7),
-                    iconColor: Color.fromARGB(255, 200, 200, 200),
-                  )
+        ? chewieController.customControls
+        : Theme
+        .of(context)
+        .platform == TargetPlatform.android
+        ? MaterialControls()
+        : CupertinoControls(
+      backgroundColor: Color.fromRGBO(41, 41, 41, 0.7),
+      iconColor: Color.fromARGB(255, 200, 200, 200),
+    )
         : Container();
   }
 
   double _calculateAspectRatio(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery
+        .of(context)
+        .size;
     final width = size.width;
     final height = size.height;
 
