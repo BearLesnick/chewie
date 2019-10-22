@@ -18,14 +18,14 @@ class PlayerWithControls extends StatelessWidget {
     return Center(
       child: AspectRatio(
         aspectRatio:
-        chewieController.aspectRatio ?? _calculateAspectRatio(context),
+            chewieController.aspectRatio ?? _calculateAspectRatio(context),
         child: _buildPlayerWithControls(chewieController, context),
       ),
     );
   }
 
-  Container _buildPlayerWithControls(ChewieController chewieController,
-      BuildContext context) {
+  Container _buildPlayerWithControls(
+      ChewieController chewieController, BuildContext context) {
     return Container(
       child: Stack(
         children: <Widget>[
@@ -36,15 +36,22 @@ class PlayerWithControls extends StatelessWidget {
               child: Padding(
                 child: VideoPlayer(chewieController.videoPlayerController),
                 padding: EdgeInsets.only(
-                  top: Platform.isAndroid && MediaQuery
-                      .of(context)
-                      .orientation != Orientation.landscape ? 1 : 0,
-                  left: Platform.isAndroid && MediaQuery
-                      .of(context)
-                      .orientation != Orientation.landscape ? 2 : 0,
-                  right: Platform.isAndroid && MediaQuery
-                      .of(context)
-                      .orientation != Orientation.landscape ? 2 : 0,
+                  //TODO [TechDept find reason of Android texture overflow]
+                  top: Platform.isAndroid &&
+                          MediaQuery.of(context).orientation !=
+                              Orientation.landscape
+                      ? 1
+                      : 0,
+                  left: Platform.isAndroid &&
+                          MediaQuery.of(context).orientation !=
+                              Orientation.landscape
+                      ? 2
+                      : 0,
+                  right: Platform.isAndroid &&
+                          MediaQuery.of(context).orientation !=
+                              Orientation.landscape
+                      ? 2
+                      : 0,
                 ),
               ),
             ),
@@ -56,26 +63,24 @@ class PlayerWithControls extends StatelessWidget {
     );
   }
 
-  Widget _buildControls(BuildContext context,
-      ChewieController chewieController,) {
+  Widget _buildControls(
+    BuildContext context,
+    ChewieController chewieController,
+  ) {
     return chewieController.showControls
         ? chewieController.customControls != null
-        ? chewieController.customControls
-        : Theme
-        .of(context)
-        .platform == TargetPlatform.android
-        ? MaterialControls()
-        : CupertinoControls(
-      backgroundColor: Color.fromRGBO(41, 41, 41, 0.7),
-      iconColor: Color.fromARGB(255, 200, 200, 200),
-    )
+            ? chewieController.customControls
+            : Theme.of(context).platform == TargetPlatform.android
+                ? MaterialControls()
+                : CupertinoControls(
+                    backgroundColor: Color.fromRGBO(41, 41, 41, 0.7),
+                    iconColor: Color.fromARGB(255, 200, 200, 200),
+                  )
         : Container();
   }
 
   double _calculateAspectRatio(BuildContext context) {
-    final size = MediaQuery
-        .of(context)
-        .size;
+    final size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
 
