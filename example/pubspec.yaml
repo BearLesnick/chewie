@@ -3,11 +3,8 @@ description: An example of how to use the chewie for Flutter
 
 dependencies:
   chewie:
-    git:
-      url: https://github.com/BearLesnick/chewie.git
-      ref: improvement/widgetToWrap
+    path: ../
   video_player: 0.10.2
-  auto_orientation: ^1.0.5
   flutter:
     sdk: flutter
 
