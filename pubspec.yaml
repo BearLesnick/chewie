@@ -15,8 +15,7 @@ dependencies:
   open_iconic_flutter: ">=0.3.0 <0.4.0"
   video_player: 0.10.2
   screen: ">=0.0.4 <0.1.0"
-  auto_orientation:
-    git: https://github.com/hahafather007/auto_orientation.git
+  auto_orientation: 1.0.5
 
 dev_dependencies:
   flutter_test:
