@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_orientation/auto_orientation.dart';
 import 'package:chewie/src/chewie_progress_colors.dart';
 import 'package:chewie/src/dependency_wrapper.dart';
 import 'package:chewie/src/player_with_controls.dart';
@@ -143,7 +142,10 @@ class ChewieState extends State<Chewie> {
     );
 
     await SystemChrome.setEnabledSystemUIOverlays([]);
-    AutoOrientation.landscapeAutoMode();
+    SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
 
     if (!widget.controller.allowedScreenSleep) {
       Screen.keepOn(true);

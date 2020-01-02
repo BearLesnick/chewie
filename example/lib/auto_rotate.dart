@@ -1,4 +1,3 @@
-import 'package:auto_orientation/auto_orientation.dart';
 import 'package:chewie/chewie.dart';
 import 'package:chewie/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
@@ -208,7 +207,6 @@ class _VideoScaffoldState extends State<VideoScaffold> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    AutoOrientation.landscapeAutoMode();
     super.initState();
   }
 
@@ -218,7 +216,6 @@ class _VideoScaffoldState extends State<VideoScaffold> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    AutoOrientation.portraitAutoMode();
     super.dispose();
   }
 
