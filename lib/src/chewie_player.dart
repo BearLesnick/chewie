@@ -143,7 +143,6 @@ class ChewieState extends State<Chewie> {
 
     await SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-      DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]);
 
