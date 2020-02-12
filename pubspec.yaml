@@ -13,7 +13,11 @@ dependencies:
   flutter:
     sdk: flutter
   open_iconic_flutter: ">=0.3.0 <0.4.0"
-  video_player: 0.10.7
+  video_player:
+    git:
+      url: https://github.com/BearLesnick/plugins.git
+      path: packages/video_player/video_player
+      ref: video_player/bugfix/add_platform_specific_lifecycle_observing
   screen: ">=0.0.4 <0.1.0"
 
 dev_dependencies:
