@@ -176,6 +176,7 @@ class ChewieState extends State<Chewie> {
 /// `VideoPlayerController`.
 class ChewieController extends ChangeNotifier {
   ChewieController({
+    this.isBackgroundAllowed = false,
     this.videoPlayerController,
     this.aspectRatio,
     this.autoInitialize = false,
@@ -222,6 +223,9 @@ class ChewieController extends ChangeNotifier {
 
   /// Whether or not the video should loop
   final bool looping;
+
+  /// Whether allow background playback or not
+  final bool isBackgroundAllowed;
 
   /// Weather or not to show the controls when initializing the widget.
   final bool showControlsOnInitialize;
@@ -319,6 +323,8 @@ class ChewieController extends ChangeNotifier {
     if (startAt != null) {
       await videoPlayerController.seekTo(startAt);
     }
+
+    await videoPlayerController.setBackground(isBackgroundAllowed);
 
     if (fullScreenByDefault) {
       videoPlayerController.addListener(_fullScreenListener);
