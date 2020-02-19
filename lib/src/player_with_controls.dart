@@ -14,7 +14,14 @@ class PlayerWithControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChewieController chewieController = ChewieController.of(context);
-    return Center(child: _buildPlayerWithControls(chewieController, context));
+    return Center(
+        child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: AspectRatio(
+              aspectRatio: chewieController.aspectRatio ??
+                  _calculateAspectRatio(context),
+              child: _buildPlayerWithControls(chewieController, context),
+            )));
   }
 
   Container _buildPlayerWithControls(
@@ -71,5 +78,13 @@ class PlayerWithControls extends StatelessWidget {
                     iconColor: Color.fromARGB(255, 200, 200, 200),
                   )
         : Container();
+  }
+
+  double _calculateAspectRatio(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
+    return width > height ? width / height : height / width;
   }
 }
