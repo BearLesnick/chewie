@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:chewie/src/chewie_player.dart';
@@ -13,14 +14,7 @@ class PlayerWithControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChewieController chewieController = ChewieController.of(context);
-
-    return Center(
-      child: AspectRatio(
-        aspectRatio:
-            chewieController.aspectRatio ?? _calculateAspectRatio(context),
-        child: _buildPlayerWithControls(chewieController, context),
-      ),
-    );
+    return Center(child: _buildPlayerWithControls(chewieController, context));
   }
 
   Container _buildPlayerWithControls(
@@ -30,11 +24,30 @@ class PlayerWithControls extends StatelessWidget {
         children: <Widget>[
           chewieController.placeholder ?? Container(),
           Center(
-            child: Hero(
-              tag: chewieController.videoPlayerController,
-              child: AspectRatio(
-                  aspectRatio: chewieController.aspectRatio,
-                  child: VideoPlayer(chewieController.videoPlayerController)),
+            child: Padding(
+              child: Hero(
+                tag: chewieController.videoPlayerController,
+                child: AspectRatio(
+                    aspectRatio: chewieController.aspectRatio,
+                    child: VideoPlayer(chewieController.videoPlayerController)),
+              ),
+              padding: EdgeInsets.only(
+                top: Platform.isAndroid &&
+                        MediaQuery.of(context).orientation !=
+                            Orientation.landscape
+                    ? 1
+                    : 0,
+                left: Platform.isAndroid &&
+                        MediaQuery.of(context).orientation !=
+                            Orientation.landscape
+                    ? 2
+                    : 0,
+                right: Platform.isAndroid &&
+                        MediaQuery.of(context).orientation !=
+                            Orientation.landscape
+                    ? 2
+                    : 0,
+              ),
             ),
           ),
           chewieController.overlay ?? Container(),
@@ -58,13 +71,5 @@ class PlayerWithControls extends StatelessWidget {
                     iconColor: Color.fromARGB(255, 200, 200, 200),
                   )
         : Container();
-  }
-
-  double _calculateAspectRatio(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final width = size.width;
-    final height = size.height;
-
-    return width > height ? width / height : height / width;
   }
 }
