@@ -248,6 +248,11 @@ class ChewieController extends ChangeNotifier {
   /// to be able to change controller with changing media query.
   double aspectRatio;
 
+  void set setAspectRatioWithListenersNotify(double aspectRatio) {
+    this.aspectRatio = aspectRatio;
+    notifyListeners();
+  }
+
   /// The colors to use for controls on iOS. By default, the iOS player uses
   /// colors sampled from the original iOS 11 designs.
   final ChewieProgressColors cupertinoProgressColors;

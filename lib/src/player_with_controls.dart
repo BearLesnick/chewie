@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:chewie/src/chewie_player.dart';
@@ -33,27 +32,9 @@ class PlayerWithControls extends StatelessWidget {
           Center(
             child: Hero(
               tag: chewieController.videoPlayerController,
-              child: Padding(
-                child: VideoPlayer(chewieController.videoPlayerController),
-                padding: EdgeInsets.only(
-                  //TODO [TechDept find reason of Android texture overflow]
-                  top: Platform.isAndroid &&
-                          MediaQuery.of(context).orientation !=
-                              Orientation.landscape
-                      ? 1
-                      : 0,
-                  left: Platform.isAndroid &&
-                          MediaQuery.of(context).orientation !=
-                              Orientation.landscape
-                      ? 2
-                      : 0,
-                  right: Platform.isAndroid &&
-                          MediaQuery.of(context).orientation !=
-                              Orientation.landscape
-                      ? 2
-                      : 0,
-                ),
-              ),
+              child: AspectRatio(
+                  aspectRatio: chewieController.aspectRatio,
+                  child: VideoPlayer(chewieController.videoPlayerController)),
             ),
           ),
           chewieController.overlay ?? Container(),
